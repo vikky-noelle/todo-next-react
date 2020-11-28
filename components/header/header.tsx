@@ -1,29 +1,16 @@
 import React, { useContext } from 'react';
 import styles from './header.module.css'
-import { Heading, Box } from '@chakra-ui/react';
-import { TodoListContext } from '../../contexts/todoListContext';
+import { Heading } from '@chakra-ui/react';
+import TodoForm from '../todoForm/todoForm';
 
 const Header: React.FC = () => {
-    const { clearList } = useContext(TodoListContext);
     return (
-        <div className={styles.header}>
-            <Heading as="h1" size="xl">T o d o &nbsp; A p p</Heading>
-            <Box
-                as="button"
-                bg="rgb(255,255,255, 0.6)"
-                height="35px"
-                width="10%"
-                marginTop="12px"
-                marginRight="20px"
-                fontSize="1.2em"
-                // padding="5px"
-                _hover={{
-                    bg: "#ebedf0",
-                    color: "black"
-                }}
-                onClick={() => clearList()}
-            >Reset</Box>
-
+        <div className={styles.header + " h-1/4 w-4/5 shadow-lg rounded-lg bg-white relative overflow-hidden"}>
+            <div className="bg-purple-500 rounded-full h-48 w-48 absolute -bottom-24 -right-24"></div>
+            <div className="bg-pink-500 rounded-full h-24 w-24 absolute -top-7 -right-10"></div>
+            <Heading className="p-4" as="h1" size="xl">
+                C r e a t e &nbsp; T a s k</Heading>
+            <TodoForm />
         </div>
     );
 }

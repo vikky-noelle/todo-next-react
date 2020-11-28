@@ -1,16 +1,4 @@
 .header{
-    height: 60px;
-    margin-top: 5px;
-    /* margin-left: 1%; */
-    width: 100%;
-    background-color: rgb(255,255,255, 0.6);
-}
-.header>h1{
-    float: left;
-    padding: 5px;
-    font-weight: 300;
-}
-.header>button{
-    /* padding: 10px; */
-    float: right;
+    margin-left: 10%;
+    margin-top: 2%;
 }

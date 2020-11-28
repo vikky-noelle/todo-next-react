@@ -1,63 +1,29 @@
 import React, { useContext, useState, useEffect } from 'react';
 import styles from './board.module.css';
 import { TodoListContext } from '../../contexts/todoListContext';
-import { Heading, Button, Box, Tooltip } from '@chakra-ui/react';
+import { Heading, Center, Button, Tooltip, ScaleFade, transition } from '@chakra-ui/react';
 import { DeleteIcon, EditIcon, CheckIcon, CloseIcon } from '@chakra-ui/icons';
 
 
 const Board: React.FC = () => {
-    const [name, setName] = useState<string>(() => "")
 
-    const { todos, addTask, editTask, editItem, removeTask, findItem, changeStatusTask } = useContext(TodoListContext)
-
-    const handleSubmit = e => {
-        e.preventDefault()
-        if (!editItem) {
-            addTask(name)
-            setName('')
-        } else {
-            editTask(name, editItem.id, editItem.status)
-        }
-    }
-
-    const handleKeyPress = e => {
-        if (e.key === 'Enter')
-            handleSubmit(e)
-    }
-
-    useEffect(() => {
-        if (editItem) {
-            setName(editItem.title)
-            console.log(editItem)
-        } else {
-            setName('')
-        }
-    }, [editItem])
+    const { todos, removeTask, findItem, changeStatusTask } = useContext(TodoListContext)
 
     return (
-        <div className={styles.container}>
-            <div className={styles.todo}>
-                <Heading as="h1" size="xl" padding="20px" mb="2">To Do</Heading>
-                <input
-                    value={name}
-                    onKeyPress={handleKeyPress}
-                    onChange={e => setName(e.target.value)}
-                    placeholder="Enter Item"></input>
-                <Box
-                    as="button"
-                    bg="#44D362"
-                    _hover={{
-                        bg: "#ebedf0",
-                        color: "black"
-                    }}
-                    onClick={handleSubmit}>{editItem ? 'Edit Task' : 'Add Task'}</Box>
-            </div>
-            <div className={styles.todoList}>
-                {todos.map((text) => (
-                    <div key={text.id}>
-                        <h1>{text.title}</h1>
+        <div className={styles.todoList + " grid grid-cols-3 w-3/4"}>
+            {todos.map((text) => (
+                <Center className="shadow-lg bg-white rounded-lg relative overflow-hidden"
+                    key={text.id}
+                >
+                    <Heading>{text.title}</Heading>
+                    <div className="bg-purple-500 rounded-full h-24 w-24 absolute -bottom-8 -right-8">
                         <Tooltip label="Delete the task">
                             <Button
+                                className="float-left ml-4 mt-4"
+                                _hover={{
+                                    transform: "scale(1.2)",
+                                    transition: "0.2s ease-in"
+                                }}
                                 size="sm"
                                 bg="none"
                                 variant="ghost"
@@ -66,8 +32,16 @@ const Board: React.FC = () => {
                                 <DeleteIcon w={6} h={6} />
                             </Button>
                         </Tooltip>
+                    </div>
+
+                    <div className="bg-pink-500 rounded-full h-24 w-24 absolute -top-8 -right-8">
                         <Tooltip label="Edit the task">
                             <Button
+                                _hover={{
+                                    transform: "scale(1.2)",
+                                    transition: "0.2s ease-in"
+                                }}
+                                className="float-left mt-10 ml-4"
                                 size="sm"
                                 bg="none"
                                 variant="ghost"
@@ -76,9 +50,17 @@ const Board: React.FC = () => {
                                 <EditIcon w={6} h={6} />
                             </Button>
                         </Tooltip>
-                        {text.status ?
+                    </div>
+                    {text.status ?
+                        <div className="bg-purple-500 rounded-full h-24 w-24 absolute -bottom-8 -left-8">
+
                             <Tooltip label="Mark not done">
                                 <Button
+                                    _hover={{
+                                        transform: "scale(1.2)",
+                                        transition: "0.2s ease-in"
+                                    }}
+                                    className="float-right mt-4 mr-4"
                                     size="sm"
                                     bg="none"
                                     variant="ghost"
@@ -87,9 +69,16 @@ const Board: React.FC = () => {
                                     <CloseIcon w={6} h={6} />
                                 </Button>
                             </Tooltip>
-                            :
+                        </div>
+                        :
+                        <div className="bg-purple-500 rounded-full h-24 w-24 absolute -bottom-8 -left-8">
                             <Tooltip label="Mark Done">
                                 <Button
+                                    _hover={{
+                                        transform: "scale(1.2)",
+                                        transition: "0.2s ease-in"
+                                    }}
+                                    className="float-right mt-4 mr-4"
                                     size="sm"
                                     bg="none"
                                     variant="ghost"
@@ -98,10 +87,10 @@ const Board: React.FC = () => {
                                     <CheckIcon w={6} h={6} />
                                 </Button>
                             </Tooltip>
-                        }
-                    </div>
-                ))}
-            </div>
+                        </div>
+                    }
+                </Center>
+            ))}
         </div>
     );
 }

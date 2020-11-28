@@ -1,42 +1,7 @@
-.container{
-    margin-top: 20px;
-    margin-bottom: 20px;
-    height: auto;
-    width: 94%;
-    margin-left: 3%;
-    /* border: 1px solid brown; */
-}
-.container>div{
-    float: left;
-    width: 50%;
-    margin-left: 25%;
-    min-height: 200px;
-    height: auto;
-    background-color: rgb(255, 255, 255, 0.6);
-    /* border: 1px solid white;  */
-}
-.container>div>h1{
-    /* padding: 10px; */
-    margin: 10px;
-    font-weight: 400;
-}
-.todo>button{
-    padding: 5px;
-    font-size: 1.2em;
-    float: right;
-    margin-right: 5%;
-    cursor: pointer;
-}
-.todo>input{
-    float: left;
-    padding: 5px;
-    margin-left: 5%;
-    font-size: 1.2em;
-}
 .todoList{
-    width: 90%;
+    width: 80%;
     text-align: center;
-    margin-left: 5%;
+    margin-left: 10%;
     margin-bottom: 20px;
     /* font-size: medium; */
 }
@@ -45,14 +10,11 @@
     margin-left: 5%;
     margin-top: 20px;
     margin-bottom: 20px;
-    height: 40px;
-    background-color: #44D362;
-    opacity: 0.7;
+    height: 150px;
     transition: 0.2s ease-in-out;
 }
 .todoList>div:hover{
     cursor: pointer;
-    opacity: 1;
     /* color: white; */
     /* border-radius: 10%; */
 }
