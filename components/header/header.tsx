@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import styles from './header.module.css'
 import { Heading } from '@chakra-ui/react';
-import TodoForm from '../todoForm/todoForm';
+import TodoForm from '../../containers/TodoForm/TodoForm';
 
 const Header: React.FC = () => {
     return (

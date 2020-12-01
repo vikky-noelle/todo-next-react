@@ -1,7 +1,7 @@
 import React, { useContext, useState, useEffect } from 'react';
-import styles from './board.module.css';
 import { TodoListContext } from '../../contexts/todoListContext';
-import { Input, Box } from '@chakra-ui/react';
+import PrimaryButton from '../../components/button/Button';
+import PrimaryInput from '../../components/Input/Input';
 
 
 const TodoForm: React.FC = () => {
@@ -9,7 +9,7 @@ const TodoForm: React.FC = () => {
 
     const { addTask, editTask, editItem, clearList } = useContext(TodoListContext)
 
-    const handleSubmit = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const handleSubmit = (e: React.MouseEvent<HTMLElement>) => {
         e.preventDefault()
         if (!editItem) {
             addTask(name)
@@ -35,35 +35,18 @@ const TodoForm: React.FC = () => {
 
     return (
         <div className="grid grid-cols-3 gap-4 p-4">
-            <Input
-                variant="flushed"
+            <PrimaryInput
                 value={name}
                 onKeyPress={handleKeyPress}
                 onChange={e => setName(e.target.value)}
                 placeholder="Enter Item" />
-            <Box
-                w="75%"
-                as="button"
-                bg="#44D362"
-                opacity="0.9"
-                _hover={{
-                    opacity: 1,
-                    // bg: "#ebedf0",
-                    color: "black"
-                }}
-                onClick={handleSubmit} > {editItem ? 'Edit Task' : 'Add Task'}</Box>
-            <Box
-                w="75%"
-                as="button"
-                bg="#44D362"
-                opacity="0.9"
-                _hover={{
-                    opacity: 1,
-                    // bg: "#ebedf0",
-                    color: "black"
-                }}
+            <PrimaryButton
+                onClick={handleSubmit}
+                name={editItem ? 'Edit Task' : 'Add Task'} />
+            <PrimaryButton
+                name="Reset"
                 onClick={() => clearList()}
-            >Reset</Box>
+            />
         </div>
     );
 }
