@@ -1,9 +1,9 @@
 import React, { useContext, useState, useEffect } from 'react';
 import styles from './Board.module.css';
-import { TodoListContext } from '../../Contexts/TodoListContext';
+import { TodoListContext } from '../../contexts/TodoListContext';
 import { Heading, Center, Button, Tooltip, ScaleFade, transition } from '@chakra-ui/react';
 import { DeleteIcon, EditIcon, CheckIcon, CloseIcon } from '@chakra-ui/icons';
-import SecondaryButton from '../Button/SecondaryButton';
+import SecondaryButton from '../button/SecondaryButton';
 
 
 const Board: React.FC = () => {

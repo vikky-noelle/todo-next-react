@@ -1,5 +1,5 @@
 import { ThemeProvider, theme, CSSReset } from '@chakra-ui/react';
-import TodoListContextProvider from '../Contexts/TodoListContext';
+import TodoListContextProvider from '../contexts/TodoListContext';
 import { AppProps } from 'next/app'
 import '../styles/index.css'
 

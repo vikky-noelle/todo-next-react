@@ -1,7 +1,7 @@
 import React, { useContext, useState, useEffect } from 'react';
-import { TodoListContext } from '../../Contexts/TodoListContext';
-import PrimaryButton from '../../Components/Button/PrimaryButton';
-import PrimaryInput from '../../Components/Input/Input';
+import { TodoListContext } from '../../contexts/TodoListContext';
+import PrimaryButton from '../../components/button/PrimaryButton';
+import PrimaryInput from '../../components/input/Input';
 
 
 const TodoForm: React.FC = () => {

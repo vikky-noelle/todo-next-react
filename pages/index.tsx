@@ -1,6 +1,6 @@
-import Layout from '../Components/Layout'
-import Board from '../Components/Board/Board'
-import Header from '../Components/Header/Header'
+import Layout from '../components/Layout'
+import Board from '../components/board/Board'
+import Header from '../components/header/Header'
 
 export default function Home() {
   return (
