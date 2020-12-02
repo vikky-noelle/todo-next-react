@@ -12,25 +12,27 @@ interface Props {
 }
 interface IContextProp {
     todos: TodosObject[],
-    addTask(title: string): void,
+    addTask(title: string): string,
     removeTask(id: string): void,
     clearList(): void,
     findItem(id: string): void,
     editTask(id: string, title: string, status: boolean): void,
     editItem: TodosObject,
-    changeStatusTask(id: string, title: string, status: boolean): void
+    changeStatusTask(id: string): void
 
 }
 export const TodoListContext: React.Context<IContextProp> = createContext({} as IContextProp)
 
-const TodoListContextProvider = (props: Props) => {
+const TodoListContextProvider = ({ children }: Props) => {
 
     const [todos, setTodos] = useState<TodosObject[]>([])
 
     const [editItem, setEditItem] = useState<TodosObject>(null)
 
-    const addTask = (title: string): void => {
-        setTodos([...todos, { title, id: uuid(), status: false }])
+    const addTask = (title: string): string => {
+        const id = uuid();
+        setTodos([...todos, { title, id: id, status: false }])
+        return id;
     }
 
     const removeTask = (id: string): void => {
@@ -56,9 +58,13 @@ const TodoListContextProvider = (props: Props) => {
         setEditItem(null)
     }
 
-    const changeStatusTask = (id: string, title: string, status: boolean): void => {
-        status = !status;
-        const newTasks = todos.map(task => (task.id === id ? { title, id, status } : task))
+    const changeStatusTask = (id: string): void => {
+        const newTasks = todos.map(task => {
+            if (task.id === id) {
+                task.status = !task.status
+            }
+            return task
+        })
         setTodos(newTasks)
     }
     return (
@@ -74,7 +80,7 @@ const TodoListContextProvider = (props: Props) => {
                 changeStatusTask
             }}
         >
-            {props.children}
+            {children}
         </TodoListContext.Provider>
     )
 }

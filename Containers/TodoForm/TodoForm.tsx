@@ -1,7 +1,7 @@
 import React, { useContext, useState, useEffect } from 'react';
-import { TodoListContext } from '../../contexts/todoListContext';
-import PrimaryButton from '../../components/button/Button';
-import PrimaryInput from '../../components/Input/Input';
+import { TodoListContext } from '../../Contexts/TodoListContext';
+import PrimaryButton from '../../Components/Button/PrimaryButton';
+import PrimaryInput from '../../Components/Input/Input';
 
 
 const TodoForm: React.FC = () => {
@@ -9,9 +9,12 @@ const TodoForm: React.FC = () => {
 
     const { addTask, editTask, editItem, clearList } = useContext(TodoListContext)
 
-    const handleSubmit = (e: React.MouseEvent<HTMLElement>) => {
+    const handleSubmit = (e: React.MouseEvent<HTMLElement> | React.KeyboardEvent<HTMLElement>) => {
         e.preventDefault()
-        if (!editItem) {
+        if (name.length <= 0) {
+            alert("Field can't be empty")
+        }
+        else if (!editItem) {
             addTask(name)
             setName('')
         } else {

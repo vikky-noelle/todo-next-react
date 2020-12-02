@@ -3,7 +3,7 @@ import { Box, BoxProps } from "@chakra-ui/react";
 interface Props extends BoxProps {
     name: string
 }
-const PrimaryButton = (props: Props) => {
+const PrimaryButton = ({ name, onClick }: Props) => {
     return (
         <Box
             w="75%"
@@ -14,9 +14,9 @@ const PrimaryButton = (props: Props) => {
                 opacity: 1,
                 color: "black"
             }}
-            onClick={props.onClick}
+            onClick={onClick}
         >
-            {props.name}
+            {name}
         </Box>
     );
 };
